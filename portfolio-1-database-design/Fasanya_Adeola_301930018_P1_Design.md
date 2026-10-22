@@ -54,4 +54,4 @@ I use **trip** to connect bookings and drivers without duplicating customer and 
 - **Request date:** `requested_at` is required. A database trigger or application operation checks that it is not in the past when the booking is created.
 - **Driver assignment:** Foreign keys require an existing booking and driver. Assignment operations check driver availability and prevent multiple trips for one booking.
 - **Conflicting trips:** Transaction logic checks that a driver and vehicle are not already committed to overlapping active trips. A simple unique key cannot enforce time overlap.
-- **Trip status and fare:** A `CHECK` constraint restricts booking status to `requested`, `assigned`, `in progress`, `completed` or `cancelled`. Transaction logic ensures completed bookings have a recorded fare and cancelled bookings cannot subsequently be completed..
+- **Trip status and fare:** A `CHECK` constraint restricts booking status to `requested`, `assigned`, `in progress`, `completed` or `cancelled`. Transaction logic ensures completed bookings have a recorded fare and cancelled bookings cannot subsequently be completed.
