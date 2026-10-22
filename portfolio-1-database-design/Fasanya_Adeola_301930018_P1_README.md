@@ -53,6 +53,38 @@ The system covers **one fictional ride-hailing and delivery service**, using fic
 - Trip status tracking
 - Fare recording
 
+# Design and Implementation Files
+
+## Files
+
+| File | Contents |
+|------|----------|
+| `Fasanya_Adeola_301930018_P1_Design.md` | Database entities, attributes, keys, relationships and business rules. |
+| `Fasanya_Adeola_301930018_P1_ERDiagram.md` | Mermaid ER diagram showing the five tables and their relationships. |
+| `Fasanya_Adeola_301930018_P1_Normalisation.md` | Examples explaining First, Second and Third Normal Forms (1NF, 2NF and 3NF). |
+| `Fasanya_Adeola_301930018_P1_Schema.sql` | PostgreSQL table definitions, primary keys, foreign keys, unique constraints and CHECK constraints. |
+| `Fasanya_Adeola_301930018_P1_SampleData.sql` | SQL statements for inserting fictional customers, drivers, vehicles, bookings and trips. |
+| `Fasanya_Adeola_301930018_P1_ConstraintTests.sql` | Invalid INSERT statements for testing database constraints and a final row-count query. |
+| `screenshots/` | Directory for database commands and test-result screenshots. |
+
+---
+
+## Implementation
+
+I use **PostgreSQL 16** and the database `ride_logistics_portfolio` for my Ride-hailing and Logistics System. The schema contains five tables: `customer`, `driver`, `vehicle`, `booking` and `trip`. It uses automatically generated identity primary keys, foreign keys, unique constraints, required fields and CHECK constraints to maintain data integrity.
+
+I use the supplied sample-data file to populate the tables and the constraint-test file to check how PostgreSQL responds to invalid records. The tests target required fields, duplicate values, foreign keys and permitted booking values. I run the negative test statements separately so that an expected error does not prevent subsequent tests from running.
+
+---
+
+## Test Results
+
+The observed PostgreSQL results confirm that the database rejects a duplicate vehicle registration number (`LAG-123-AB`) with a unique-constraint error. The database also rejects a booking that references the nonexistent customer ID `-999999`, returning a foreign-key violation. These results demonstrate that the corresponding constraints prevent invalid records from being inserted.
+
+The final row-count query returns **2 customers, 3 drivers, 3 vehicles, 5 bookings and 3 trips**. These counts match the expected sample-data totals and show no additional records from the two rejected statements. The observed results confirm these two constraint failures and the reported row counts; they do not establish that every other test has been executed successfully.
+
+The schema does not independently enforce all business rules. Checking that booking request times are not in the past, verifying driver availability during assignment, preventing overlapping active trips, requiring a fare for completed bookings and preventing cancelled bookings from subsequently being completed require additional transaction logic or triggers. These rules remain limitations of the current implementation.
+
 ### Excluded from Scope
 
 - Online payments
