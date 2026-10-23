@@ -1,0 +1,12 @@
+*.tgz
+*.tar.gz
+mongosh-*/
+mongodb-linux-*/
+/tmp/
+node_modules/
+*.tgz
+*.tar.gz
+mongosh-*/
+mongodb-linux-*/
+/tmp/
+node_modules/
